@@ -87,6 +87,42 @@
         filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
       }
 
+      .safe-row {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 6px;
+      }
+
+      .safe-live {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        color: #0b5c2b;
+      }
+
+      .safe-live .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #22c55e;
+        box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+        animation: blink 1s ease-in-out infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.25;
+        }
+      }
+
       .card {
         background: var(--card);
         border: 1px solid var(--stroke);
@@ -210,8 +246,11 @@
         <div class="brand">
           App Store
         </div>
-        <div>Today</div>
+            <div class="safe-row">
+        <div class="safe-live"><span class="dot"></span>SAFE</div>
       </div>
+      </div>
+  
       <div class="card">
         <div class="app-row">
           <div class="app-icon">
