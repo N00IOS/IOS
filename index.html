@@ -3,23 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Install App</title>
+    <title>Next Install</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --bg-1: #0b0b10;
-        --bg-2: #171724;
-        --card: rgba(255, 255, 255, 0.08);
-        --stroke: rgba(255, 255, 255, 0.16);
-        --text: #f2f4ff;
-        --muted: #c4c8de;
-        --accent: #5ef0b3;
-        --accent-2: #4aa3ff;
+        --bg-1: #f7f8fd;
+        --bg-2: #eceff6;
+        --card: rgba(255, 255, 255, 0.92);
+        --stroke: rgba(15, 23, 42, 0.08);
+        --text: #0c111b;
+        --muted: #5d6879;
+        --accent: #007aff;
+        --accent-2: #64d2ff;
       }
 
       * {
@@ -29,99 +29,207 @@
       body {
         margin: 0;
         min-height: 100vh;
-        font-family: "Space Grotesk", sans-serif;
+        font-family: "Manrope", sans-serif;
         color: var(--text);
         background:
-          radial-gradient(800px 400px at 10% -10%, rgba(94, 240, 179, 0.25), transparent 60%),
-          radial-gradient(600px 300px at 100% 0%, rgba(74, 163, 255, 0.25), transparent 60%),
-          linear-gradient(160deg, var(--bg-1), var(--bg-2));
+          radial-gradient(900px 500px at 10% -10%, rgba(100, 210, 255, 0.35), transparent 60%),
+          radial-gradient(900px 520px at 110% 0%, rgba(255, 203, 173, 0.38), transparent 60%),
+          linear-gradient(180deg, var(--bg-1), var(--bg-2));
         display: grid;
         place-items: center;
         padding: 24px 16px 48px;
       }
 
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          repeating-linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0.4) 0,
+            rgba(255, 255, 255, 0.4) 1px,
+            transparent 1px,
+            transparent 10px
+          );
+        opacity: 0.2;
+        pointer-events: none;
+      }
+
       .wrap {
         width: min(680px, 100%);
-        text-align: center;
+        display: grid;
+        gap: 18px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 6px;
+        color: var(--muted);
+        font-size: 14px;
+        letter-spacing: 0.2px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .brand img {
+        height: 22px;
+        width: auto;
+        display: block;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
       }
 
       .card {
         background: var(--card);
         border: 1px solid var(--stroke);
-        border-radius: 20px;
-        padding: 28px 22px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        border-radius: 26px;
+        padding: 22px;
+        box-shadow: 0 24px 60px rgba(20, 28, 47, 0.12);
+      }
+
+      .app-row {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .app-icon {
+        width: 86px;
+        height: 86px;
+        border-radius: 22px;
+        background: #0d1016;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 16px 30px rgba(15, 23, 42, 0.18);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .app-icon img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: contain;
+      }
+
+      .app-info {
+        flex: 1;
+        display: grid;
+        gap: 6px;
       }
 
       h1 {
-        margin: 0 0 10px;
-        font-size: clamp(24px, 5vw, 32px);
-        letter-spacing: 0.2px;
+        margin: 0;
+        font-size: clamp(22px, 4.6vw, 28px);
+        letter-spacing: -0.2px;
       }
 
-      p {
-        margin: 0 0 18px;
+      .subtitle {
+        margin: 0;
         color: var(--muted);
-        font-size: clamp(14px, 3.6vw, 16px);
+        font-size: clamp(13px, 3.2vw, 15px);
       }
 
-      .tabs {
+      .meta {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-        margin-top: 8px;
+        gap: 8px;
       }
 
-      .tab {
+      .meta span {
+        font-size: 12px;
+        color: #526070;
+        background: #eef1f7;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        padding: 4px 10px;
+        border-radius: 999px;
+      }
+
+      .get-button {
         display: inline-flex;
         align-items: center;
+        gap: 12px;
         justify-content: center;
-        padding: 12px 18px;
-        border-radius: 12px;
-        border: 1px solid var(--stroke);
-        color: var(--text);
+        height: 36px;
+        min-width: 82px;
+        padding: 0 18px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+        letter-spacing: 0.6px;
         text-decoration: none;
-        background: rgba(255, 255, 255, 0.06);
-        min-width: 140px;
-        transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+        box-shadow: 0 10px 24px rgba(0, 122, 255, 0.28);
+        transition: transform 120ms ease, box-shadow 120ms ease;
       }
 
-      .tab.primary {
-        border-color: rgba(94, 240, 179, 0.6);
-        background: linear-gradient(135deg, rgba(94, 240, 179, 0.18), rgba(74, 163, 255, 0.12));
-      }
-
-      .tab:active {
+      .get-button:active {
         transform: scale(0.98);
+        box-shadow: 0 6px 16px rgba(0, 122, 255, 0.2);
       }
 
-      .hint {
-        margin-top: 14px;
+      .footnote {
+        margin: 0;
         font-size: 12px;
-        color: #aeb4d6;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 520px) {
+        .app-row {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .get-button {
+          align-self: flex-end;
+        }
       }
     </style>
   </head>
   <body>
     <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          App Store
+        </div>
+        <div>Today</div>
+      </div>
       <div class="card">
-        <h1>Install Battlegrounds</h1>
-        <p>Tap install on iPhone/iPad. If asked, go to Settings → VPN &amp; Device Management to trust the developer.</p>
-        <div class="tabs">
+        <div class="app-row">
+          <div class="app-icon">
+            <img src="bgmi.png" alt="BGMI icon" />
+          </div>
+          <div class="app-info">
+            <h1>BGMI - NEXT IOS</h1>
+            <p class="subtitle">Action • Online Multiplayer</p>
+            <div class="meta">
+              <span>4.7 ★</span>
+              <span>18+ Age</span>
+              <span>3.5 GB</span>
+            </div>
+          </div>
           <a
-            class="tab primary"
+            class="get-button"
             href="itms-services://?action=download-manifest&url=https://n00ios.github.io/IOS/manifest.plist"
           >
-            Install
+            GET
           </a>
-          <a class="tab" href="#help">Help</a>
-        </div>
-        <div class="hint" id="help">
-          Make sure your device is online and the install link opens in Safari.
         </div>
       </div>
+      <p class="footnote">
+        Install instructions:
+        Open in Safari → tap GET → the app will install on your Home Screen. If prompted, go to Settings → VPN
+        &amp; Device Management and trust the developer.
+      </p>
     </div>
   </body>
 </html>
