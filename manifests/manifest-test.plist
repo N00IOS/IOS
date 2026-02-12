@@ -11,7 +11,7 @@
           <key>kind</key>
           <string>software-package</string>
           <key>url</key>
-          <string>https://pub-0127533664754318ba82e832d36cea89.r2.dev/5baf7b1c-3e21-40cb-9f2a-c2972d3e2b64/1770904570663-51it2g.ipa</string>
+          <string>https://pub-0127533664754318ba82e832d36cea89.r2.dev/5baf7b1c-3e21-40cb-9f2a-c2972d3e2b64/1770910529835-qqtmqs.ipa</string>
         </dict>
         <dict>
           <key>kind</key>
@@ -19,7 +19,7 @@
           <key>needs-shine</key>
           <false/>
           <key>url</key>
-          <string>https://n00ios.github.io/IOS/bgmi-icon.png</string>
+          <string>https://n00ios.github.io/IOS/assets/images/next.png</string>
         </dict>
         <dict>
           <key>kind</key>
@@ -27,19 +27,19 @@
           <key>needs-shine</key>
           <false/>
           <key>url</key>
-          <string>https://n00ios.github.io/IOS/bgmi.png</string>
+          <string>https://n00ios.github.io/IOS/assets/images/next.png</string>
         </dict>
       </array>
       <key>metadata</key>
       <dict>
         <key>bundle-identifier</key>
-        <string>com.pubg.imobile</string>
+        <string>com.visionapi.HelloWorldApp</string>
         <key>bundle-version</key>
-        <string>20720</string>
+        <string>1</string>
         <key>kind</key>
         <string>software</string>
         <key>title</key>
-        <string>Battlegrounds</string>
+        <string>HelloWorldApp</string>
       </dict>
     </dict>
   </array>
