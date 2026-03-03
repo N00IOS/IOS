@@ -47,8 +47,8 @@
 
   </div>
   <script>
-    const manifestUrl = "/manifests/manifest.plist";
-    const installUrl = `itms-services://?action=download-manifest&url=${encodeURIComponent(manifestUrl)}`;
+    const manifestUrl = `${window.location.origin}/manifests/manifest.plist`;
+    const installUrl = `itms-services://?action=download-manifest&url=${manifestUrl}`;
     document.getElementById("install-link").href = installUrl;
   </script>
 </body>
