@@ -39,40 +39,18 @@
             <span>3.5 GB</span>
           </div>
         </div>
-        <a class="get-button"
-          href="itms-services://?action=download-manifest&url=https://pub-0127533664754318ba82e832d36cea89.r2.dev/5baf7b1c-3e21-40cb-9f2a-c2972d3e2b64/1772521670997-0glnw6.plist">
+        <a id="install-link" class="get-button" href="#">
           GET
         </a>
       </div>
     </div>
 
-    <!-- New DNS Card -->
-    <!--
-    <div class="card"
-      style="margin-top: -8px; padding: 16px 22px; border-style: dashed; background: rgba(0, 122, 255, 0.03);">
-      <div style="display: flex; align-items: center; justify-content: space-between;">
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <div
-            style="width: 32px; height: 32px; background: #007aff; border-radius: 8px; display: grid; place-items: center; color: white; font-size: 14px;">
-            🛡️</div>
-          <div>
-            <div style="font-weight: 700; font-size: 14px;">Anti-Revoke Protection</div>
-            <div style="font-size: 12px; color: var(--muted);">Install DNS to block Apple verification</div>
-          </div>
-        </div>
-        <a href="assets/config/anti_revoke.mobileconfig" class="get-button"
-          style="background: #eef1f7; color: #007aff; box-shadow: none; font-size: 11px; height: 30px;">SET UP</a>
-      </div>
-    </div>
-
-    <p class="footnote">
-      <strong>Install instructions:</strong><br>
-      1. Click <b>SET UP</b> to install DNS (Prevents app from crashing).<br>
-      2. Tap <b>GET</b> on the app you want to install.<br>
-      3. Go to Settings &rarr; VPN &amp; Device Management to trust the developer.
-    </p>
-  -->
   </div>
+  <script>
+    const manifestUrl = "/manifests/manifest.plist";
+    const installUrl = `itms-services://?action=download-manifest&url=${encodeURIComponent(manifestUrl)}`;
+    document.getElementById("install-link").href = installUrl;
+  </script>
 </body>
 
 </html>
