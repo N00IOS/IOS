@@ -15,9 +15,20 @@
 
 <body>
   <div id="splash" class="splash-screen">
+    <div class="splash-bg-blobs">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
     <div class="splash-content">
-      <img src="assets/images/round.png" alt="Logo" class="splash-logo" />
-      <div class="splash-loader"></div>
+      <div class="splash-logo-container">
+        <div class="splash-logo-ring"></div>
+        <div class="splash-logo-glow"></div>
+        <img src="assets/images/round.png" alt="Logo" class="splash-logo" />
+      </div>
+      <div class="splash-loader-wrap">
+        <span class="loading-label">Initializing System</span>
+        <div class="splash-loader"></div>
+      </div>
     </div>
   </div>
 
@@ -105,9 +116,18 @@
 
   </div>
   <script>
+    // Handle manifest URL
     const manifestUrl = `${window.location.origin}/manifests/manifest.plist`;
     const installUrl = `itms-services://?action=download-manifest&url=${manifestUrl}`;
     document.getElementById("install-link").href = installUrl;
+
+    // Handle Splash Screen
+    window.addEventListener('load', () => {
+      const splash = document.getElementById('splash');
+      setTimeout(() => {
+        splash.classList.add('hidden');
+      }, 2600); // Cinematic 2.6s timing
+    });
   </script>
 </body>
 

@@ -49,39 +49,126 @@ body::before {
   pointer-events: none;
 }
 
-/* Splash Screen & Animations */
+/* Liquid Glass Light Premium Splash */
 .splash-screen {
   position: fixed;
   inset: 0;
-  background: var(--bg-1);
-  display: grid;
-  place-items: center;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 10000;
-  transition: opacity 0.5s ease-out, visibility 0.5s;
+  overflow: hidden;
+}
+
+.splash-bg-blobs {
+  position: absolute;
+  inset: 0;
+  filter: blur(100px);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.blob {
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  animation: blobFloat 15s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+  background: var(--accent);
+  top: -20%;
+  left: -20%;
+  opacity: 0.3;
+}
+
+.blob-2 {
+  background: var(--accent-2);
+  bottom: -20%;
+  right: -20%;
+  animation-delay: -5s;
+  opacity: 0.3;
 }
 
 .splash-screen.hidden {
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.splash-screen.hidden .splash-content {
+  transform: scale(1.5);
+  opacity: 0;
+  filter: blur(20px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .splash-content {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 48px;
+  z-index: 1;
+}
+
+.splash-logo-container {
+  width: 140px;
+  height: 140px;
+  position: relative;
+}
+
+.splash-logo-ring {
+  position: absolute;
+  inset: -15px;
+  border: 2px solid rgba(0, 122, 255, 0.1);
+  border-radius: 32px;
+  animation: ringRotate 4s linear infinite;
+}
+
+.splash-logo-glow {
+  position: absolute;
+  inset: -30px;
+  background: var(--accent);
+  filter: blur(50px);
+  opacity: 0.15;
+  animation: logoPulse 2s ease-in-out infinite;
 }
 
 .splash-logo {
-  width: 100px;
-  height: 100px;
-  animation: logoPulse 1.8s ease-in-out infinite, logoEntry 1s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: drop-shadow(0 0 30px rgba(0, 122, 255, 0.15));
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: logoCinema 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.08));
+  z-index: 2;
+}
+
+.splash-loader-wrap {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.8s forwards;
+}
+
+.loading-label {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: var(--text);
+  opacity: 0.5;
+  text-transform: uppercase;
 }
 
 .splash-loader {
-  width: 40px;
-  height: 4px;
+  width: 100%;
+  height: 2px;
   background: rgba(0, 122, 255, 0.1);
   border-radius: 99px;
   position: relative;
@@ -94,72 +181,76 @@ body::before {
   top: 0;
   left: 0;
   height: 100%;
-  width: 50%;
-  background: var(--accent);
-  border-radius: 99px;
-  animation: loaderMove 1.5s infinite ease-in-out;
+  width: 20%;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: loaderGlow 2.5s infinite ease-in-out;
 }
 
-@keyframes logoPulse {
+@keyframes blobFloat {
+  0% {
+    transform: translate(0, 0) scale(1.1);
+  }
 
-  0%,
   100% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 30px rgba(0, 122, 255, 0.15));
+    transform: translate(10%, 10%) scale(1.3);
+  }
+}
+
+@keyframes ringRotate {
+  from {
+    transform: rotate(0deg);
+    opacity: 0.4;
   }
 
   50% {
-    transform: scale(1.08);
-    filter: drop-shadow(0 0 45px rgba(0, 122, 255, 0.3));
+    opacity: 0.8;
+  }
+
+  to {
+    transform: rotate(360deg);
+    opacity: 0.4;
   }
 }
 
-@keyframes logoEntry {
+@keyframes logoCinema {
   from {
     opacity: 0;
-    transform: scale(0.6) translateY(20px);
+    transform: scale(0.6) translateY(20px) perspective(1000px) rotateX(15deg);
   }
 
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0) rotateX(0);
   }
 }
 
-@keyframes loaderMove {
+@keyframes loaderGlow {
   0% {
-    transform: translateX(-100%);
-  }
-
-  50% {
-    transform: translateX(100%);
-    width: 70%;
+    left: -50%;
   }
 
   100% {
-    transform: translateX(-100%);
+    left: 150%;
   }
 }
 
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Page Entrance */
 .wrap {
   width: min(680px, 100%);
   display: grid;
   gap: 18px;
-  animation: wrapEntry 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: 1.2s;
-  /* Wait for splash to start fading */
 }
 
-@keyframes wrapEntry {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.wrap>* {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: itemEntrance 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .topbar {
@@ -170,6 +261,34 @@ body::before {
   color: var(--muted);
   font-size: 14px;
   letter-spacing: 0.2px;
+  animation-delay: 2.7s;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: 26px;
+  padding: 22px;
+  box-shadow: 0 24px 60px rgba(20, 28, 47, 0.12);
+  animation-delay: 2.8s;
+}
+
+.card-guide {
+  margin-top: 10px;
+  padding-bottom: 24px;
+  animation-delay: 2.9s;
+}
+
+@keyframes itemEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .brand {
@@ -184,13 +303,11 @@ body::before {
   height: 22px;
   width: auto;
   display: block;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
 .safe-row {
   display: flex;
   justify-content: flex-end;
-  padding: 0 6px;
 }
 
 .safe-live {
@@ -225,14 +342,6 @@ body::before {
   }
 }
 
-.card {
-  background: var(--card);
-  border: 1px solid var(--stroke);
-  border-radius: 26px;
-  padding: 22px;
-  box-shadow: 0 24px 60px rgba(20, 28, 47, 0.12);
-}
-
 .app-row {
   display: flex;
   align-items: center;
@@ -256,21 +365,6 @@ body::before {
   height: 100%;
   display: block;
   object-fit: contain;
-}
-
-.app-icon.letter {
-  background: radial-gradient(80px 80px at 30% 20%, rgba(100, 210, 255, 0.55), transparent 55%),
-    radial-gradient(90px 90px at 120% 0%, rgba(255, 203, 173, 0.55), transparent 55%),
-    linear-gradient(180deg, #0d1016, #111827);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.app-icon.letter span {
-  font-weight: 900;
-  letter-spacing: 0.8px;
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 22px;
-  text-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
 }
 
 .app-info {
@@ -326,107 +420,6 @@ h1 {
 
 .get-button:active {
   transform: scale(0.98);
-  box-shadow: 0 6px 16px rgba(0, 122, 255, 0.2);
-}
-
-.footnote {
-  margin: 0;
-  font-size: 12px;
-  color: var(--muted);
-  text-align: center;
-}
-
-.divider {
-  height: 1px;
-  background: rgba(15, 23, 42, 0.08);
-  margin: 16px 0;
-}
-
-@media (max-width: 520px) {
-  .app-row {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .app-info {
-    align-items: center;
-  }
-
-  .meta {
-    justify-content: center;
-  }
-
-  .get-button {
-    align-self: center;
-  }
-
-  .long {
-    display: none;
-  }
-
-  .short {
-    display: inline;
-  }
-
-  .card-guide {
-    margin-top: 12px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 20px 16px;
-  }
-
-  .card-header {
-    margin-bottom: 18px;
-    justify-content: center;
-    position: relative;
-  }
-
-  .card-header h2 {
-    font-size: 17px;
-    letter-spacing: -0.3px;
-  }
-
-  .steps {
-    gap: 12px;
-  }
-
-  .step {
-    padding: 2px 0;
-    gap: 12px;
-  }
-
-  .step-num {
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
-    font-size: 10px;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 122, 255, 0.15);
-  }
-
-  .step-text {
-    font-size: 13.5px;
-    color: var(--muted);
-  }
-
-  .divider {
-    margin: 14px 0;
-    opacity: 0.5;
-  }
-
-  .footnote {
-    font-size: 11px;
-    opacity: 0.8;
-  }
-}
-
-.card-guide {
-  margin-top: 10px;
 }
 
 .card-header {
@@ -487,4 +480,91 @@ h1 {
 
 .step-text strong {
   color: var(--text);
+}
+
+.divider {
+  height: 1px;
+  background: rgba(15, 23, 42, 0.08);
+  margin: 16px 0;
+}
+
+.footnote {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .app-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .app-info {
+    align-items: center;
+  }
+
+  .meta {
+    justify-content: center;
+  }
+
+  .get-button {
+    align-self: center;
+  }
+
+  .long {
+    display: none;
+  }
+
+  .short {
+    display: inline;
+  }
+
+  .card-guide {
+    margin-top: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 20px 16px;
+  }
+
+  .card-header {
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-header h2 {
+    font-size: 17px;
+    letter-spacing: -0.3px;
+  }
+
+  .steps {
+    gap: 12px;
+  }
+
+  .step {
+    padding: 2px 0;
+    gap: 12px;
+  }
+
+  .step-num {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    font-size: 10px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 122, 255, 0.15);
+  }
+
+  .step-text {
+    font-size: 13.5px;
+    color: var(--muted);
+  }
 }
