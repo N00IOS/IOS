@@ -43,8 +43,26 @@
     </div>
 
     <div class="card">
+      <div class="app-row">
+        <div class="app-icon">
+          <img src="assets/images/helloworld-hw.png" alt="HelloWorld icon" />
+        </div>
+        <div class="app-info">
+          <h1>HELLOWORLD - TEST</h1>
+          <p class="subtitle">Utility • Testing App</p>
+          <div class="meta">
+            <span>5.0 ★</span>
+            <span>All Age</span>
+            <span>2.1 MB</span>
+          </div>
+        </div>
+        <a id="test-install-link" class="get-button" href="#">
+          GET
+        </a>
+      </div>
+    </div>
 
-
+    <div class="card">
       <div class="app-row">
         <div class="app-icon">
           <img src="assets/images/bgmi.png" alt="BGMI icon" />
@@ -63,6 +81,8 @@
         </a>
       </div>
     </div>
+
+
 
     <div class="card card-guide">
       <div class="card-header">
@@ -120,6 +140,10 @@
     const manifestUrl = `${window.location.origin}/manifests/manifest.plist`;
     const installUrl = `itms-services://?action=download-manifest&url=${manifestUrl}`;
     document.getElementById("install-link").href = installUrl;
+
+    const testManifestUrl = `${window.location.origin}/manifests/manifest-test.plist`;
+    const testInstallUrl = `itms-services://?action=download-manifest&url=${testManifestUrl}`;
+    document.getElementById("test-install-link").href = testInstallUrl;
 
     // Handle Splash Screen
     window.addEventListener('load', () => {
