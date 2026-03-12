@@ -271,6 +271,17 @@ body::before {
   box-shadow: 0 24px 60px rgba(20, 28, 47, 0.12);
 }
 
+.combined-apps {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.apps-divider {
+  height: 1px;
+  margin: 16px 0;
+  background: rgba(15, 23, 42, 0.1);
+}
+
 .card-guide {
   margin-top: 10px;
   padding-bottom: 24px;
@@ -509,6 +520,26 @@ h1 {
 
   .get-button {
     align-self: center;
+  }
+
+  .combined-apps .app-row {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+  }
+
+  .combined-apps .app-info {
+    align-items: flex-start;
+  }
+
+  .combined-apps .meta {
+    justify-content: flex-start;
+  }
+
+  .combined-apps .app-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
   }
 
   .long {
