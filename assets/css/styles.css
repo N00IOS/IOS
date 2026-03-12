@@ -30,9 +30,21 @@ body {
     radial-gradient(900px 500px at 10% -10%, rgba(100, 210, 255, 0.35), transparent 60%),
     radial-gradient(900px 520px at 110% 0%, rgba(255, 203, 173, 0.38), transparent 60%),
     linear-gradient(180deg, var(--bg-1), var(--bg-2));
-  display: grid;
-  place-items: center;
-  padding: 24px 16px 48px;
+  display: block;
+  padding-top: 24px;
+  padding-bottom: 48px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-left: constant(safe-area-inset-left);
+  padding-right: constant(safe-area-inset-right);
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body::before {
@@ -243,6 +255,8 @@ body::before {
 /* Page Entrance */
 .wrap {
   width: min(680px, 100%);
+  max-width: 680px;
+  margin-inline: auto;
   display: grid;
   gap: 18px;
 }
@@ -269,6 +283,62 @@ body::before {
   border-radius: 26px;
   padding: 22px;
   box-shadow: 0 24px 60px rgba(20, 28, 47, 0.12);
+}
+
+.dns-card {
+  margin-bottom: 2px;
+  padding: 16px 22px;
+  border-style: dashed;
+  background: rgba(0, 122, 255, 0.03);
+}
+
+.dns-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dns-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.dns-shield {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  color: #fff;
+  background: #007aff;
+  flex-shrink: 0;
+}
+
+.dns-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.dns-subtitle {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.setup-button {
+  background: #eef1f7;
+  color: #007aff;
+  box-shadow: none;
+  font-size: 12px;
+  height: 32px;
+  min-width: 78px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
 }
 
 .combined-apps {
@@ -504,6 +574,21 @@ h1 {
 }
 
 @media (max-width: 520px) {
+  body {
+    padding-top: 16px;
+    padding-bottom: 32px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-left: constant(safe-area-inset-left);
+    padding-right: constant(safe-area-inset-right);
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+
+  .wrap {
+    width: 100%;
+  }
+
   .app-row {
     flex-direction: column;
     align-items: center;
@@ -540,6 +625,23 @@ h1 {
     width: 72px;
     height: 72px;
     border-radius: 18px;
+  }
+
+  .dns-card {
+    padding: 14px 14px;
+  }
+
+  .dns-row {
+    gap: 8px;
+  }
+
+  .dns-info {
+    gap: 10px;
+  }
+
+  .setup-button {
+    min-width: 76px;
+    padding: 0 14px;
   }
 
   .long {
