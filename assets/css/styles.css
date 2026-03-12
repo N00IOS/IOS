@@ -261,7 +261,6 @@ body::before {
   color: var(--muted);
   font-size: 14px;
   letter-spacing: 0.2px;
-  animation-delay: 2.7s;
 }
 
 .card {
@@ -270,13 +269,11 @@ body::before {
   border-radius: 26px;
   padding: 22px;
   box-shadow: 0 24px 60px rgba(20, 28, 47, 0.12);
-  animation-delay: 2.8s;
 }
 
 .card-guide {
   margin-top: 10px;
   padding-bottom: 24px;
-  animation-delay: 2.9s;
 }
 
 @keyframes itemEntrance {
